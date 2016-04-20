@@ -1,9 +1,13 @@
 
 基于node-ccap
+
 增加了三个参数:
-int geomeLevel 几何划线级别
-int noiseSigma 噪点级别
-int noiseType 噪点类型
+
+int geomeLevel 几何划线级别.
+
+int noiseSigma 噪点级别.
+
+int noiseType 噪点类型.
 
 # node-ccap —— node.js generate captcha using c++ library CImg. [![Build Status](https://travis-ci.org/DoubleSpout/ccap.png?branch=master)](https://travis-ci.org/DoubleSpout/ccap)
 
