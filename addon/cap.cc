@@ -22,6 +22,9 @@ namespace img_obj{
 	int quality;
 	int isjpeg;
   int fontSize;
+  int geomeLevel;
+  int noiseSigma;
+  int noiseType;
 }
 
 
@@ -51,6 +54,9 @@ void cap::create(const FunctionCallbackInfo<Value>& args) {
   img_obj::quality = args[6]->Int32Value();
   img_obj::isjpeg = args[7]->Int32Value();
   img_obj::fontSize = args[8]->Int32Value();
+  img_obj::geomeLevel = args[9]->Int32Value();
+  img_obj::noiseSigma = args[10]->Int32Value();
+  img_obj::noiseType = args[11]->Int32Value();
 
   save();  
   
@@ -72,6 +78,9 @@ int cap::save(){
    int quality(img_obj::quality);
    int isjpeg(img_obj::isjpeg);
    int fontSize(img_obj::fontSize);
+   int geomeLevel(img_obj::geomeLevel);
+   int noiseSigma(img_obj::noiseSigma);
+   int noiseType(img_obj::noiseType);
 
   // Create captcha image
   //----------------------
@@ -110,7 +119,7 @@ int cap::save(){
   CImg<unsigned char> copy = (+captcha).fill(0);
   for (unsigned int l = 0; l<3; ++l) {
     if (l) copy.blur(0.5f).normalize(0,148);
-    for (unsigned int k = 0; k<10; ++k) {
+    for (unsigned int k = 0; k<geomeLevel; ++k) {
       cimg_forX(color,i) color[i] = (unsigned char)(128 + cimg::rand()*127);
       if (cimg::rand()<0.5f) copy.draw_circle((int)(cimg::rand()*captcha.width()),
                                               (int)(cimg::rand()*captcha.height()),
@@ -124,7 +133,7 @@ int cap::save(){
     }
   }
   captcha|=copy;
-  captcha.noise(10,2);
+  captcha.noise(noiseSigma,noiseType);
 
   captcha = (+captcha).fill(255) - captcha;
 
