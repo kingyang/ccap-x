@@ -9,6 +9,9 @@ int noiseSigma 噪点级别.
 
 int noiseType 噪点类型.
 
+常见问题:
+1.升级Node后 需要重新编译(卸载 再安装一次)
+
 # node-ccap —— node.js generate captcha using c++ library CImg. [![Build Status](https://travis-ci.org/DoubleSpout/ccap.png?branch=master)](https://travis-ci.org/DoubleSpout/ccap)
 
 You can generate captcha without install any other libraries or software, only do npm install ccap, that's all.
